@@ -35,18 +35,18 @@ Die API ist danach erreichbar unter:
 FastAPI stellt automatisch eine API-Dokumentation bereit:
     http://127.0.0.1:8000/docs
     
+## Datenbankmodell (ERD)
 
-## Projektstruktur
-
-```text
-patient-management/
-│
-├── main.py              # Einstiegspunkt der Anwendung
-├── database.py          # Datenbankverbindung
-├── models.py            # SQLAlchemy Modelle
-├── routers/
-│   └── patients.py      # Patient-Routen (CRUD)
-├── requirements.txt     # Abhängigkeiten
-└── README.md
+```mermaid
+erDiagram
+    PATIENT {
+        int id PK
+        string vorname
+        string nachname
+        date geburtsdatum
+        string email
+        string telefon
+        string krankengeschichte
+    }
 
     
