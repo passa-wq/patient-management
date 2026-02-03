@@ -18,3 +18,7 @@ app.include_router(patients.router)
 @app.get("/")
 def read_root():
     return {"message": "Patient Management API läuft!"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app)

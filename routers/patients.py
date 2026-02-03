@@ -4,6 +4,8 @@ from database import SessionLocal
 import models
 from pydantic import BaseModel
 from datetime import date
+from sqlalchemy.exc import IntegrityError
+
 
 router = APIRouter(
     prefix="/patients",
@@ -59,10 +61,21 @@ def create_patient(patient: PatientCreate, db: Session = Depends(get_db)):
         telefon=patient.telefon,
         krankengeschichte=patient.krankengeschichte
     )
+
     db.add(db_patient)
-    db.commit()
+
+    try:
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=400,
+            detail="Ein Patient mit dieser E-Mail existiert bereits."
+        )
+
     db.refresh(db_patient)
     return db_patient
+
 
 # PUT /patients/{patient_id}
 @router.put("/{patient_id}")
