@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database import SessionLocal
-import models
+from backend.database import SessionLocal
+from backend import models
 from pydantic import BaseModel
 from datetime import date
 from sqlalchemy.exc import IntegrityError

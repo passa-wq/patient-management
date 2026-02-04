@@ -1,5 +1,5 @@
+from backend.database import Base
 from sqlalchemy import Column, Integer, String, Date
-from database import Base
 
 class Patient(Base):
     __tablename__ = "patients"
